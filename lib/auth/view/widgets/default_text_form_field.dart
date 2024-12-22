@@ -1,6 +1,9 @@
+import 'package:chatty_app/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../shared/app_theme.dart';
+
 class DefaultTextFormField extends StatefulWidget {
   const DefaultTextFormField(
       {super.key,
@@ -68,7 +71,11 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
           borderSide: BorderSide(color: AppTheme.red),
         ),
         hintText: widget.hintText,
-        hintStyle: Theme.of(context).textTheme.titleMedium,
+        hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w400,
+              fontSize: 16.sp,
+              color: AppTheme.grey.withOpacity(0.9),
+            ),
       ),
     );
   }

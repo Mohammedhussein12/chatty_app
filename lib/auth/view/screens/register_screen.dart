@@ -1,10 +1,8 @@
 import 'package:chatty_app/shared/app_validator.dart';
 import 'package:chatty_app/auth/view_model/auth_states.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../shared/app_theme.dart';
-import '../../../shared/database_services.dart';
 import '../../../home_screen.dart';
 import '../../../shared/ui_utils.dart';
 import '../../view_model/auth_view_model.dart';
@@ -36,11 +34,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
       decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage('assets/images/background_image.png'),
-            fit: BoxFit.fill),
+            fit: BoxFit.cover),
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Register'),
+          title: const Text(
+            'Register',
+          ),
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),

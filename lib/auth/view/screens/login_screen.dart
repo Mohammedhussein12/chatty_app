@@ -32,13 +32,15 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
           image: AssetImage('assets/images/background_image.png'),
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Login'),
+          title: const Text(
+            'Login',
+          ),
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
@@ -72,8 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       UiUtils.showLoading(context);
                     } else if (state is LoginErrorState) {
                       UiUtils.hideLoading(context);
-                      UiUtils.showMessage(
-                          state.message, AppTheme.red);
+                      UiUtils.showMessage(state.message, AppTheme.red);
                     } else if (state is LoginSuccessState) {
                       UiUtils.hideLoading(context);
                       Navigator.pushReplacementNamed(
