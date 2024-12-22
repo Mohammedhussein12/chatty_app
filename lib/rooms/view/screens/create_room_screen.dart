@@ -1,8 +1,13 @@
 import 'package:chatty_app/auth/view/widgets/default_elevated_button.dart';
 import 'package:chatty_app/auth/view/widgets/default_text_form_field.dart';
+import 'package:chatty_app/rooms/view_model/rooms_state.dart';
+import 'package:chatty_app/rooms/view_model/rooms_view_model.dart';
+import 'package:chatty_app/shared/ui_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../shared/app_theme.dart';
+import '../../data/models/room_model.dart';
 import '../widgets/categories_drop_down_button.dart';
 
 class CreateRoomScreen extends StatefulWidget {
@@ -17,8 +22,9 @@ class CreateRoomScreen extends StatefulWidget {
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final roomNameController = TextEditingController();
   final roomDescriptionController = TextEditingController();
-  String? selectedCategory;
+  String? selectedCategoryId;
   var formKey = GlobalKey<FormState>();
+  final roomsViewModel = RoomsViewModel();
 
   @override
   void dispose() {
@@ -30,35 +36,36 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
   @override
   Widget build(BuildContext context) {
     final titleMediumTextThem = Theme.of(context).textTheme.titleMedium;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Chat App',
-        ),
-      ),
-      resizeToAvoidBottomInset: false,
-      extendBodyBehindAppBar: true,
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/images/background_image.png'),
+    return BlocProvider(
+      create: (context) => roomsViewModel,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Chat App',
           ),
         ),
-        child: Form(
-          key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 100.h),
-              Padding(
-                padding: EdgeInsetsDirectional.symmetric(horizontal: 16.w),
-                child: Material(
-                  borderRadius: BorderRadius.circular(16.0.r),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  elevation: 12,
-                  child: Flexible(
+        resizeToAvoidBottomInset: false,
+        extendBodyBehindAppBar: true,
+        body: Container(
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage('assets/images/background_image.png'),
+            ),
+          ),
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 100.h),
+                Padding(
+                  padding: EdgeInsetsDirectional.symmetric(horizontal: 16.w),
+                  child: Material(
+                    borderRadius: BorderRadius.circular(16.0.r),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    elevation: 12,
                     child: Container(
                       color: AppTheme.white,
                       padding:
@@ -93,7 +100,10 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                             },
                           ),
                           SizedBox(height: 24.h),
-                          CategoriesDropDownButton(onCategorySelected: (category) => selectedCategory= category ,),
+                          CategoriesDropDownButton(
+                            onCategorySelected: (categoryId) =>
+                                selectedCategoryId = categoryId,
+                          ),
                           SizedBox(height: 24.h),
                           DefaultTextFormField(
                             maxLines: 2,
@@ -110,11 +120,26 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                             },
                           ),
                           SizedBox(height: 40.h),
-                          DefaultElevatedButton(
-                            width: MediaQuery.sizeOf(context).width * 0.85,
-                            borderRadiusValue: 25.r,
-                            onPressed: createRoom,
-                            label: 'Create',
+                          BlocListener<RoomsViewModel, RoomsStates>(
+                            listener: (context, state) {
+                              if (state is CreateRoomLoading) {
+                                UiUtils.showLoading(context);
+                              } else if (state is CreateRoomError) {
+                                UiUtils.hideLoading(context);
+                                UiUtils.showMessage(state.error, AppTheme.red);
+                              } else if (state is CreateRoomSuccess) {
+                                UiUtils.hideLoading(context);
+                                UiUtils.showMessage('Room created successfully',
+                                    AppTheme.primary);
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: DefaultElevatedButton(
+                              width: MediaQuery.sizeOf(context).width * 0.85,
+                              borderRadiusValue: 25.r,
+                              onPressed: createRoom,
+                              label: 'Create',
+                            ),
                           ),
                           SizedBox(height: 28.h),
                         ],
@@ -122,8 +147,8 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -131,6 +156,13 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
   }
 
   void createRoom() {
-    if (formKey.currentState?.validate() == true) {}
+    if (formKey.currentState?.validate() == true) {
+      final room = RoomModel(
+        name: roomNameController.text,
+        description: roomDescriptionController.text,
+        categoryId: selectedCategoryId!,
+      );
+      roomsViewModel.createRoom(room);
+    }
   }
 }

@@ -12,7 +12,7 @@ class AuthViewModel extends Cubit<AuthStates> {
     emit(LoginLoadingState());
     try {
       currentUser =
-          await DatabaseServices.login(email: email, password: password);
+          await DatabaseUtils.login(email: email, password: password);
       emit(LoginSuccessState());
     } catch (e) {
       emit(LoginErrorState(message: e.toString()));
@@ -25,7 +25,7 @@ class AuthViewModel extends Cubit<AuthStates> {
       required String password}) async {
     emit(RegisterLoadingState());
     try {
-      currentUser = await DatabaseServices.registerUser(name: name, email: email, password: password);
+      currentUser = await DatabaseUtils.registerUser(name: name, email: email, password: password);
       emit(RegisterSuccessState());
     } catch (e) {
      emit(RegisterErrorState(message: e.toString()));
