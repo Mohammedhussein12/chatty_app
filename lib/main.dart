@@ -1,8 +1,10 @@
+import 'package:chatty_app/rooms/view/screens/create_room_screen.dart';
 import 'package:chatty_app/shared/app_theme.dart';
 import 'package:chatty_app/auth/view/screens/login_screen.dart';
 import 'package:chatty_app/auth/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'auth/view/screens/register_screen.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,16 +25,22 @@ class ChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: LoginScreen.routeName,
-      themeMode: ThemeMode.light,
-      theme: AppTheme.lightTheme,
-      routes: {
-        LoginScreen.routeName: (context) => const LoginScreen(),
-        RegisterScreen.routeName: (context) => const RegisterScreen(),
-        HomeScreen.routeName: (context) => const HomeScreen()
-      },
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: HomeScreen.routeName,
+        themeMode: ThemeMode.light,
+        theme: AppTheme.lightTheme,
+        routes: {
+          LoginScreen.routeName: (context) => const LoginScreen(),
+          RegisterScreen.routeName: (context) => const RegisterScreen(),
+          HomeScreen.routeName: (context) => const HomeScreen(),
+          CreateRoomScreen.routeName: (context) => const CreateRoomScreen(),
+        },
+      ),
     );
   }
 }

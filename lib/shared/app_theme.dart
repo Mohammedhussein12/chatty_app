@@ -5,22 +5,23 @@ class AppTheme {
   static const Color primary = Color(0xff3598DB);
   static const Color white = Color(0xffFFFFFF);
   static const Color black = Color(0xff141922);
-  static const Color grey = Color(0xffC8C9CB);
+  static const Color grey = Color(0xff7F7F7F);
   static const Color red = Color(0xffFF0000);
   static final ThemeData lightTheme = ThemeData(
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(foregroundColor: primary),
     ),
     appBarTheme: const AppBarTheme(
-        centerTitle: true, backgroundColor: Colors.transparent),
+        foregroundColor: white,
+        centerTitle: true,
+        backgroundColor: Colors.transparent),
     primaryColor: primary,
     scaffoldBackgroundColor: Colors.transparent,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      foregroundColor: white,
+      elevation: 8,
+      iconSize: 35,
       backgroundColor: primary,
-      shape: CircleBorder(
-        side: BorderSide(width: 4, color: white),
-      ),
+      shape: CircleBorder(),
     ),
     textTheme: TextTheme(
       titleLarge: GoogleFonts.poppins(
