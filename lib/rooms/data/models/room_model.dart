@@ -1,11 +1,12 @@
 class RoomModel {
-  final String id;
+  static const collectionName = 'rooms';
+  String id;
   final String name;
   final String categoryId;
   final String description;
 
   RoomModel(
-      {required this.id,
+      {this.id = '',
       required this.name,
       required this.categoryId,
       required this.description});

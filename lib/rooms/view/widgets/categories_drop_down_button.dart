@@ -1,12 +1,15 @@
+import 'package:chatty_app/rooms/data/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../shared/app_theme.dart';
 
 class CategoriesDropDownButton extends StatefulWidget {
   const CategoriesDropDownButton({
-    super.key, required this.onCategorySelected,
+    super.key,
+    required this.onCategorySelected,
   });
-  final void Function (String?) onCategorySelected;
+
+  final void Function(String?) onCategorySelected;
 
   @override
   State<CategoriesDropDownButton> createState() =>
@@ -14,7 +17,7 @@ class CategoriesDropDownButton extends StatefulWidget {
 }
 
 class _CategoriesDropDownButtonState extends State<CategoriesDropDownButton> {
-  String? selectedCategory;
+  String? selectedCategoryId;
 
   @override
   Widget build(BuildContext context) {
@@ -51,20 +54,29 @@ class _CategoriesDropDownButtonState extends State<CategoriesDropDownButton> {
             color: AppTheme.grey.withOpacity(0.9),
           ),
         ),
-        value: selectedCategory,
-        items: ['Sports', 'Movies', 'Music']
+        value: selectedCategoryId,
+        items: CategoryModel.categories
             .map((category) => DropdownMenuItem(
-                value: category,
-                child: Text(category,
-                    style: titleMediumTextTheme?.copyWith(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16.sp,
-                      color: AppTheme.grey.withOpacity(0.9),
-                    ))))
+                value: category.id,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/${category.imageName}.png',
+                      height: 30.h,
+                    ),
+                     SizedBox(width: 15.w,),
+                    Text(category.name,
+                        style: titleMediumTextTheme?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16.sp,
+                          color: AppTheme.grey.withOpacity(0.9),
+                        )),
+                  ],
+                )))
             .toList(),
-        onChanged: (category) {
-          selectedCategory = category;
-          widget.onCategorySelected(selectedCategory);
+        onChanged: (categoryId) {
+          selectedCategoryId = categoryId;
+          widget.onCategorySelected(selectedCategoryId);
           setState(() {});
         },
       ),

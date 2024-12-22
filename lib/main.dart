@@ -1,4 +1,5 @@
 import 'package:chatty_app/rooms/view/screens/create_room_screen.dart';
+import 'package:chatty_app/shared/app_bloc_observer.dart';
 import 'package:chatty_app/shared/app_theme.dart';
 import 'package:chatty_app/auth/view/screens/login_screen.dart';
 import 'package:chatty_app/auth/view_model/auth_view_model.dart';
@@ -15,6 +16,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Bloc.observer = AppBlocObserver();
   runApp(
     BlocProvider(create: (context) => AuthViewModel(), child: const ChatApp()),
   );
