@@ -54,23 +54,23 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
               image: AssetImage('assets/images/background_image.png'),
             ),
           ),
-          child: Form(
-            key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: 100.h),
-                Padding(
-                  padding: EdgeInsetsDirectional.symmetric(horizontal: 16.w),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(16.0.r),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    elevation: 12,
-                    child: Container(
-                      color: AppTheme.white,
-                      padding:
-                          EdgeInsets.only(left: 16.w, right: 16.h, top: 36.h),
-                      margin: EdgeInsetsDirectional.symmetric(horizontal: 16.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 100.h),
+              Padding(
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 16.w),
+                child: Material(
+                  borderRadius: BorderRadius.circular(16.0.r),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 12,
+                  child: Container(
+                    color: AppTheme.white,
+                    padding:
+                        EdgeInsets.only(left: 16.w, right: 16.h, top: 36.h),
+                    margin: EdgeInsetsDirectional.symmetric(horizontal: 16.w),
+                    child: Form(
+                      key: formKey,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -147,8 +147,8 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
