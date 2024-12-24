@@ -21,3 +21,16 @@ class RegisterErrorState extends AuthStates {
 }
 
 class RegisterSuccessState extends AuthStates {}
+
+class LogoutLoadingState extends AuthStates {}
+
+class LogoutErrorState extends AuthStates {
+  final String message;
+
+  LogoutErrorState({required this.message});
+}
+
+class LogoutSuccessState extends AuthStates {}
+class IsLoggedInState extends AuthStates {}
+class IsNotLoggedInState extends AuthStates {}
+

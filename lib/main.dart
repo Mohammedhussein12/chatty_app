@@ -3,6 +3,7 @@ import 'package:chatty_app/shared/app_bloc_observer.dart';
 import 'package:chatty_app/shared/app_theme.dart';
 import 'package:chatty_app/auth/view/screens/login_screen.dart';
 import 'package:chatty_app/auth/view_model/auth_view_model.dart';
+import 'package:chatty_app/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,10 +35,10 @@ class ChatApp extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: LoginScreen.routeName,
         themeMode: ThemeMode.light,
         theme: AppTheme.lightTheme,
         routes: {
+          SplashScreen.routeName: (context) => const SplashScreen(),
           LoginScreen.routeName: (context) => const LoginScreen(),
           RegisterScreen.routeName: (context) => const RegisterScreen(),
           HomeScreen.routeName: (context) => const HomeScreen(),

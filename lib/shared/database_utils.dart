@@ -2,7 +2,6 @@ import 'package:chatty_app/chat/data/models/message_model.dart';
 import 'package:chatty_app/rooms/data/models/room_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../auth/data/models/user_model.dart';
 
 class DatabaseUtils {
@@ -61,13 +60,24 @@ class DatabaseUtils {
       email: email,
       password: password,
     );
-    CollectionReference<UserModel> usersCollection = getUsersCollection();
-    DocumentSnapshot<UserModel> documentSnapShot =
-        await usersCollection.doc(credential.user!.uid).get();
-    return documentSnapShot.data()!;
+    final user = await _getUser(credential.user!.uid);
+    return user;
   }
 
   static Future<void> logout() => FirebaseAuth.instance.signOut();
+
+  static Future<UserModel> _getUser(String id) async {
+    final CollectionReference<UserModel> usersCollection = getUsersCollection();
+    DocumentSnapshot<UserModel> documentSnapShot =
+        await usersCollection.doc(id).get();
+    return documentSnapShot.data()!;
+  }
+  static Future<UserModel?> getCurrentUser() async {
+    final firebaseUser = FirebaseAuth.instance.currentUser;
+    if (firebaseUser == null) return null;
+    final user = await _getUser(firebaseUser.uid);
+    return user;
+  }
 
   static Future<List<RoomModel>> getRooms() async {
     final CollectionReference<RoomModel> roomsCollection = getRoomsCollection();
@@ -86,14 +96,20 @@ class DatabaseUtils {
   }
 
   static Future<void> insertMessageToRoom(MessageModel message) async {
-    final CollectionReference<MessageModel> messagesCollection = getMessagesCollection(message.roomId);
+    final CollectionReference<MessageModel> messagesCollection =
+        getMessagesCollection(message.roomId);
     final doc = messagesCollection.doc();
     message.id = doc.id;
     doc.set(message);
   }
 
   static Stream<List<MessageModel>> getRoomMessages(String roomId) {
-    final CollectionReference<MessageModel> messagesCollection = getMessagesCollection(roomId);
-    return messagesCollection.orderBy('dateTime',descending: true).snapshots().map((querySnapShot) => querySnapShot.docs.map((doc) => doc.data()).toList());
+    final CollectionReference<MessageModel> messagesCollection =
+        getMessagesCollection(roomId);
+    return messagesCollection
+        .orderBy('dateTime', descending: true)
+        .snapshots()
+        .map((querySnapShot) =>
+            querySnapShot.docs.map((doc) => doc.data()).toList());
   }
 }
