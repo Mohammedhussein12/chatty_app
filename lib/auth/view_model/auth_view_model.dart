@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../shared/database_services.dart';
-import '../../models/user_model.dart';
+import '../../shared/database_utils.dart';
+import '../data/models/user_model.dart';
 import 'auth_states.dart';
 
 class AuthViewModel extends Cubit<AuthStates> {

@@ -19,7 +19,7 @@ class RoomItem extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(ChatScreen.routeName);
+        Navigator.of(context).pushNamed(ChatScreen.routeName,arguments: room.id);
       },
       child: Material(
         borderRadius: BorderRadius.circular(16.0.r),

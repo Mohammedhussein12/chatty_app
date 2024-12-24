@@ -1,7 +1,7 @@
 import 'package:chatty_app/rooms/data/models/category_model.dart';
 import 'package:chatty_app/rooms/view_model/rooms_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../shared/database_services.dart';
+import '../../shared/database_utils.dart';
 import '../data/models/room_model.dart';
 
 class RoomsViewModel extends Cubit<RoomsStates> {

@@ -34,7 +34,7 @@ class ChatApp extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: HomeScreen.routeName,
+        initialRoute: LoginScreen.routeName,
         themeMode: ThemeMode.light,
         theme: AppTheme.lightTheme,
         routes: {
