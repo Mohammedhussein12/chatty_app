@@ -70,7 +70,11 @@ We welcome contributions! Here's how to contribute:
 - **intl (^0.20.0)**: Internationalization and formatting
 - **cupertino_icons (^1.0.8)**: iOS-style icons
 
-## 🎥 Demo Screenshots
+## 🎥 Demo Video
+Watch the demo video to see the application in action:
+**[Demo Video Link](https://drive.google.com/file/d/1uZxQGUbnmtNlZgKy1H-oVOukys_Xokqd/view?usp=drive_link)**
+
+## 📷 Screenshots
 
 | Splash                                        | Register                                        | Login                                         |
 |-----------------------------------------------|-------------------------------------------------|-----------------------------------------------|
