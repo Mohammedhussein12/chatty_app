@@ -74,20 +74,6 @@ We welcome contributions! Here's how to contribute:
 Watch the demo video to see the application in action:
 **[Demo Video Link](https://drive.google.com/file/d/1uZxQGUbnmtNlZgKy1H-oVOukys_Xokqd/view?usp=drive_link)**
 
-## 📷 Screenshots
-
-| Splash                                        | Register                                        | Login                                         |
-|-----------------------------------------------|-------------------------------------------------|-----------------------------------------------|
-| ![Splash](assets/screenshots/splash.png) | ![Register](assets/screenshots/register.png) | ![Login](assets/screenshots/login.png) |
-
-| Home1                                         | Home2                                  | Create Room                                        |
-|-----------------------------------------------|----------------------------------------|----------------------------------------------------|
-| ![Home1](assets/screenshots/home1.png) | ![Home2](assets/screenshots/home2.png) | ![Create Room](assets/screenshots/create_room.png) |
-
-| Room Details | Chat Interface |
-|--------------|----------------|
-| ![Room Details](assets/screenshots/room_details.png) | ![Chat Interface](assets/screenshots/room1.png) |
-
 ## 🛠 Features
 
 ### 💬 Chat Functionality
@@ -119,6 +105,20 @@ Watch the demo video to see the application in action:
 - Easy navigation
 - Recent chats
 - Quick actions
+- 
+## 📷 Screenshots
+
+| Splash                                        | Register                                        | Login                                         |
+|-----------------------------------------------|-------------------------------------------------|-----------------------------------------------|
+| ![Splash](assets/screenshots/splash.png) | ![Register](assets/screenshots/register.png) | ![Login](assets/screenshots/login.png) |
+
+| Home1                                         | Home2                                  | Create Room                                        |
+|-----------------------------------------------|----------------------------------------|----------------------------------------------------|
+| ![Home1](assets/screenshots/home1.png) | ![Home2](assets/screenshots/home2.png) | ![Create Room](assets/screenshots/create_room.png) |
+
+| Room Details | Chat Interface |
+|--------------|----------------|
+| ![Room Details](assets/screenshots/room_details.png) | ![Chat Interface](assets/screenshots/room1.png) |
 
 
 ## 👥 Contributors
