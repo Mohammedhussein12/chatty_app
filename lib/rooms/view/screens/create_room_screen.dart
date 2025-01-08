@@ -81,7 +81,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                           ),
                           SizedBox(height: 25.h),
                           Image.asset(
-                            'assets/images/room.png',
+                            'assets/images/room_details.png',
                             height: 80.h,
                             fit: BoxFit.cover,
                           ),
