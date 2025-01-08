@@ -1,4 +1,4 @@
-# Chat App
+# Chatty App
 
 ## 📑 Table of Contents
 1. [🚀 Introduction](#-introduction)
